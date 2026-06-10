@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="kheten_erp.wpf.Views.Settings.GeneralSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="28,24">
+        <StackPanel MaxWidth="720" HorizontalAlignment="Left">
+
+            <TextBlock Text="Genel" Style="{StaticResource H1}"/>
+            <TextBlock Text="Dil, bölge ve görünüm tercihleri" Style="{StaticResource Muted}" Margin="0,3,0,20"/>
+
+            <!-- Tercihler -->
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="Bölgesel" Style="{StaticResource H2}" Margin="0,0,0,16"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Dil" Style="{StaticResource FieldLabel}"/>
+                            <ComboBox Style="{StaticResource Combo}" SelectedIndex="0">
+                                <sys:String>Türkçe</sys:String>
+                                <sys:String>English</sys:String>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Para Birimi" Style="{StaticResource FieldLabel}"/>
+                            <ComboBox Style="{StaticResource Combo}" SelectedIndex="0">
+                                <sys:String>₺ Türk Lirası (TRY)</sys:String>
+                                <sys:String>$ ABD Doları (USD)</sys:String>
+                                <sys:String>€ Euro (EUR)</sys:String>
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+                    <StackPanel Margin="0,14,0,0">
+                        <TextBlock Text="Tarih Formatı" Style="{StaticResource FieldLabel}"/>
+                        <ComboBox Style="{StaticResource Combo}" SelectedIndex="0" HorizontalAlignment="Left" Width="340">
+                            <sys:String>GG.AA.YYYY (08.06.2026)</sys:String>
+                            <sys:String>YYYY-AA-GG (2026-06-08)</sys:String>
+                            <sys:String>GG/AA/YYYY (08/06/2026)</sys:String>
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Tema -->
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="Görünüm" Style="{StaticResource H2}"/>
+                    <TextBlock Text="Uygulama temasını seçin" Style="{StaticResource Muted}" Margin="0,2,0,16"/>
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton x:Name="LightOpt" GroupName="Theme" Click="Light_Click" Cursor="Hand">
+                            <RadioButton.Template>
+                                <ControlTemplate TargetType="RadioButton">
+                                    <Border x:Name="b" Width="150" Height="92" CornerRadius="10" BorderThickness="2"
+                                            BorderBrush="{DynamicResource Border}" Background="#FFFFFF" Margin="0,0,12,0">
+                                        <Grid Margin="10">
+                                            <Border Width="34" Height="34" CornerRadius="8" Background="#2563EB"
+                                                    HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                            <TextBlock Text="Açık" Foreground="#0F172A" FontWeight="SemiBold"
+                                                       HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter TargetName="b" Property="BorderBrush" Value="{DynamicResource Primary}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </RadioButton.Template>
+                        </RadioButton>
+                        <RadioButton x:Name="DarkOpt" GroupName="Theme" Click="Dark_Click" Cursor="Hand">
+                            <RadioButton.Template>
+                                <ControlTemplate TargetType="RadioButton">
+                                    <Border x:Name="b" Width="150" Height="92" CornerRadius="10" BorderThickness="2"
+                                            BorderBrush="{DynamicResource Border}" Background="#0B1120">
+                                        <Grid Margin="10">
+                                            <Border Width="34" Height="34" CornerRadius="8" Background="#3B82F6"
+                                                    HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                            <TextBlock Text="Koyu" Foreground="#F1F5F9" FontWeight="SemiBold"
+                                                       HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter TargetName="b" Property="BorderBrush" Value="{DynamicResource Primary}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </RadioButton.Template>
+                        </RadioButton>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

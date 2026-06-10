@@ -54,6 +54,9 @@
                     <RadioButton x:Name="NavPurchasing" Style="{StaticResource NavItem}" GroupName="Nav"
                                  Content="Satınalma"     Tag="{StaticResource Icon.Purchasing}"
                                  Checked="Nav_Checked"/>
+                    <RadioButton x:Name="NavEcom"       Style="{StaticResource NavItem}" GroupName="Nav"
+                                 Content="E-Ticaret"     Tag="{StaticResource Icon.Store}"
+                                 Checked="Nav_Checked"/>
                     <RadioButton x:Name="NavContacts"   Style="{StaticResource NavItem}" GroupName="Nav"
                                  Content="Cari Hesaplar" Tag="{StaticResource Icon.Contacts}"
                                  Checked="Nav_Checked"/>
@@ -132,12 +135,23 @@
                                         HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,8,0"/>
                             </Grid>
                         </Button>
-                        <Button Style="{StaticResource PrimaryButton}" Margin="14,0,0,0">
+                        <Button x:Name="NewRecordBtn" Style="{StaticResource PrimaryButton}" Margin="14,0,0,0"
+                                Click="NewRecord_Click">
+                            <Button.ContextMenu>
+                                <ContextMenu Style="{StaticResource AppContextMenu}">
+                                    <MenuItem Header="Yeni Ürün" Click="NewProduct_Click"/>
+                                    <MenuItem Header="Yeni Cari" Click="NewContact_Click"/>
+                                    <MenuItem Header="Yeni Satış Faturası" Click="NewSale_Click"/>
+                                    <MenuItem Header="Yeni Alış Siparişi" Click="NewPurchase_Click"/>
+                                </ContextMenu>
+                            </Button.ContextMenu>
                             <StackPanel Orientation="Horizontal">
                                 <Path Width="15" Height="15" Stretch="Uniform" Fill="White"
                                       Data="{StaticResource Icon.Add}" VerticalAlignment="Center"/>
-                                <TextBlock Text="Yeni Kayıt" Margin="7,0,0,0" VerticalAlignment="Center"
+                                <TextBlock Text="Yeni Kayıt" Margin="7,0,5,0" VerticalAlignment="Center"
                                            Foreground="White"/>
+                                <Path Width="12" Height="12" Stretch="Uniform" Fill="White"
+                                      Data="{StaticResource Icon.ChevronDown}" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>

@@ -79,6 +79,27 @@ namespace kheten_erp.wpf.Models
             new("AF-2026-0187", "Akın Rulman",        "29.05.2026", "₺ 4.750",  "İptal",     "err"),
         };
 
+        public static List<EcomOrder> EcomOrders { get; } = new()
+        {
+            new("TY-99214", "Trendyol",    "Ahmet Yılmaz",     "08.06.2026", "₺ 1.499", "₺ 270", "₺ 45", "₺ 1.184", "Yeni",      "info"),
+            new("HB-50831", "Hepsiburada", "Zeynep Kaya",      "08.06.2026", "₺ 899",   "₺ 153", "₺ 45", "₺ 701",   "Hazırlanıyor","warn"),
+            new("TY-99210", "Trendyol",    "Mehmet Demir",     "07.06.2026", "₺ 2.450", "₺ 441", "₺ 0",  "₺ 2.009", "Kargoda",   "ok"),
+            new("N11-7742", "N11",         "Elif Şahin",       "07.06.2026", "₺ 320",   "₺ 58",  "₺ 45", "₺ 217",   "Yeni",      "info"),
+            new("AMZ-3391", "Amazon",      "Can Öztürk",       "06.06.2026", "₺ 5.200", "₺ 780", "₺ 0",  "₺ 4.420", "Teslim",    "ok"),
+            new("HB-50820", "Hepsiburada", "Fatma Aydın",      "06.06.2026", "₺ 749",   "₺ 127", "₺ 45", "₺ 577",   "İptal",     "err"),
+            new("TY-99201", "Trendyol",    "Burak Çelik",      "05.06.2026", "₺ 1.150", "₺ 207", "₺ 45", "₺ 898",   "Kargoda",   "ok"),
+            new("SHP-1180", "Shopify",     "Selin Arslan",     "05.06.2026", "₺ 3.100", "₺ 0",   "₺ 60", "₺ 3.040", "Hazırlanıyor","warn"),
+        };
+
+        public static List<ChannelProfit> Channels { get; } = new()
+        {
+            new("Trendyol",    "%18", "₺ 44,90", "184", "₺ 142.300"),
+            new("Hepsiburada", "%17", "₺ 44,90", "96",  "₺ 71.500"),
+            new("N11",         "%18", "₺ 44,90", "41",  "₺ 28.900"),
+            new("Amazon",      "%15", "₺ 0",     "38",  "₺ 96.800"),
+            new("Shopify",     "%0",  "₺ 59,90", "27",  "₺ 61.200"),
+        };
+
         public static List<Contact> Contacts { get; } = new()
         {
             new("CR-001", "Mavi Tekstil A.Ş.",   "Müşteri",   "0212 555 11 22", "₺ 0",        "ok"),

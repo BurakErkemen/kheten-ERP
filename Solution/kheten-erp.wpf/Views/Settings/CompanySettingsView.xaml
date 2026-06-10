@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="kheten_erp.wpf.Views.Settings.CompanySettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="28,24">
+        <StackPanel MaxWidth="720" HorizontalAlignment="Left">
+
+            <TextBlock Text="Firma Bilgileri" Style="{StaticResource H1}"/>
+            <TextBlock Text="Belgelerde ve faturalarda görünecek bilgiler" Style="{StaticResource Muted}" Margin="0,3,0,20"/>
+
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="Firma Ünvanı" Style="{StaticResource FieldLabel}"/>
+                    <TextBox Style="{StaticResource InputBox}" Text="Kheten Yazılım ve Ticaret A.Ş."/>
+
+                    <Grid Margin="0,14,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Vergi Dairesi" Style="{StaticResource FieldLabel}"/>
+                            <TextBox Style="{StaticResource InputBox}" Text="Kozyatağı"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Vergi / TCKN No" Style="{StaticResource FieldLabel}"/>
+                            <TextBox Style="{StaticResource InputBox}" Text="1234567890"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Margin="0,14,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Telefon" Style="{StaticResource FieldLabel}"/>
+                            <TextBox Style="{StaticResource InputBox}" Text="0216 555 00 00"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="E-posta" Style="{StaticResource FieldLabel}"/>
+                            <TextBox Style="{StaticResource InputBox}" Text="info@kheten.com"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock Text="Adres" Style="{StaticResource FieldLabel}" Margin="0,14,0,6"/>
+                    <TextBox Style="{StaticResource InputBox}" Height="78" TextWrapping="Wrap" AcceptsReturn="True"
+                             VerticalContentAlignment="Top" Padding="10,8"
+                             Text="Kozyatağı Mah. İş Cad. No:1 Kat:5, Kadıköy / İstanbul"/>
+
+                    <Button Style="{StaticResource PrimaryButton}" Content="Değişiklikleri Kaydet"
+                            Width="180" HorizontalAlignment="Left" Margin="0,20,0,0"/>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

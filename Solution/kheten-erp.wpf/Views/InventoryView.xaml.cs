@@ -1,35 +1,67 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using kheten_erp.wpf.Models;
 
 namespace kheten_erp.wpf.Views
 {
     public partial class InventoryView : UserControl
     {
-        // Canlı koleksiyon: ekleme/düzenleme/silme tabloya anında yansır.
-        private readonly ObservableCollection<ProductItem> _products;
+        private readonly System.ComponentModel.ICollectionView _view;
 
         public InventoryView()
         {
             InitializeComponent();
 
-            _products = new ObservableCollection<ProductItem>();
-            foreach (var p in SampleData.Products)
-            {
-                var item = new ProductItem
-                {
-                    Code = p.Code,
-                    Name = p.Name,
-                    Category = p.Category,
-                    Unit = p.Unit,
-                    Price = p.Price,
-                    Stock = p.Stock,   // Stock setter durumu otomatik hesaplar
-                };
-                _products.Add(item);
-            }
+            // Kendi bağımsız görünümümüz (paylaşılan koleksiyonu bozmadan filtreleriz)
+            _view = new CollectionViewSource { Source = DataStore.Current.Products }.View;
+            _view.Filter = MatchesFilter;
+            Grid.ItemsSource = _view;
 
-            DataContext = new { Products = _products };
+            DataStore.Current.Products.CollectionChanged += (_, _) => UpdateSummary();
+            UpdateSummary();
+        }
+
+        private bool MatchesFilter(object obj)
+        {
+            if (obj is not ProductItem p) return false;
+
+            // Arama
+            var q = SearchBox?.Text?.Trim() ?? "";
+            if (q.Length > 0 &&
+                !(p.Name.Contains(q, System.StringComparison.OrdinalIgnoreCase) ||
+                  p.Code.Contains(q, System.StringComparison.OrdinalIgnoreCase)))
+                return false;
+
+            // Kategori
+            var cat = CategoryFilter?.SelectedItem as string;
+            if (!string.IsNullOrEmpty(cat) && cat != "Kategori: Tümü" && p.Category != cat)
+                return false;
+
+            return true;
+        }
+
+        private void Filter_Changed(object sender, RoutedEventArgs e)
+        {
+            _view?.Refresh();
+            UpdateResultCount();
+        }
+
+        private void UpdateResultCount()
+        {
+            if (_view is null) return;
+            var shown = _view.Cast<object>().Count();
+            var total = DataStore.Current.Products.Count;
+            ResultCount.Text = shown == total ? $"{total} ürün" : $"{shown} / {total} ürün";
+        }
+
+        private void UpdateSummary()
+        {
+            var all = DataStore.Current.Products;
+            TotalText.Text = all.Count.ToString();
+            CriticalText.Text = all.Count(p => p.StatusKind == "warn").ToString();
+            OutText.Text = all.Count(p => p.StatusKind == "err").ToString();
+            UpdateResultCount();
         }
 
         // ===== EKLE =====
@@ -37,7 +69,7 @@ namespace kheten_erp.wpf.Views
         {
             var dlg = new ProductEditWindow { Owner = Window.GetWindow(this) };
             if (dlg.ShowDialog() == true)
-                _products.Add(dlg.Result);
+                DataStore.Current.Products.Add(dlg.Result);
         }
 
         // ===== DÜZENLE =====
@@ -47,7 +79,11 @@ namespace kheten_erp.wpf.Views
 
             var dlg = new ProductEditWindow(row) { Owner = Window.GetWindow(this) };
             if (dlg.ShowDialog() == true)
-                row.CopyFrom(dlg.Result);   // düzenlemeyi orijinal satıra uygula
+            {
+                row.CopyFrom(dlg.Result);
+                _view.Refresh();
+                UpdateSummary();
+            }
         }
 
         // ===== SİL =====
@@ -60,7 +96,7 @@ namespace kheten_erp.wpf.Views
                 "Ürünü Sil", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             if (answer == MessageBoxResult.Yes)
-                _products.Remove(row);
+                DataStore.Current.Products.Remove(row);
         }
     }
 }

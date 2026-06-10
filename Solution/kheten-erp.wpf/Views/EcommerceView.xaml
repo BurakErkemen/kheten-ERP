@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="kheten_erp.wpf.Views.EcommerceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="{DynamicResource AppBg}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="28,24">
+        <StackPanel>
+
+            <!-- Başlık -->
+            <Grid Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock Text="E-Ticaret" Style="{StaticResource H1}"/>
+                    <TextBlock Text="Pazaryeri siparişleri, kanal kârlılığı ve stok uyarıları" Style="{StaticResource Muted}" Margin="0,3,0,0"/>
+                </StackPanel>
+                <Button Style="{StaticResource SecondaryButton}" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="14" Height="14" Stretch="Uniform" Fill="{DynamicResource Fg}" Data="{StaticResource Icon.Link}" VerticalAlignment="Center"/>
+                        <TextBlock Text="Siparişleri Senkronize Et" Margin="7,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <!-- KPI -->
+            <UniformGrid Columns="4" Margin="0,0,0,18">
+                <Border Style="{StaticResource Card}" Margin="0,0,9,0">
+                    <StackPanel>
+                        <TextBlock Text="Bugün Gelen Sipariş" Style="{StaticResource Muted}"/>
+                        <TextBlock Text="2" Style="{StaticResource MetricValue}" Margin="0,6,0,0"/>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource Card}" Margin="9,0,9,0">
+                    <StackPanel>
+                        <TextBlock Text="Aylık Net Kâr (e-tic.)" Style="{StaticResource Muted}"/>
+                        <TextBlock Text="₺ 400.700" Style="{StaticResource MetricValue}" Margin="0,6,0,0" Foreground="{DynamicResource Success}"/>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource Card}" Margin="9,0,9,0">
+                    <StackPanel>
+                        <TextBlock Text="Kargo Bekleyen" Style="{StaticResource Muted}"/>
+                        <TextBlock Text="3" Style="{StaticResource MetricValue}" Margin="0,6,0,0" Foreground="{DynamicResource Warning}"/>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource Card}" Margin="9,0,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Kritik Stok" Style="{StaticResource Muted}"/>
+                        <TextBlock x:Name="CriticalCount" Text="0" Style="{StaticResource MetricValue}" Margin="0,6,0,0" Foreground="{DynamicResource Danger}"/>
+                    </StackPanel>
+                </Border>
+            </UniformGrid>
+
+            <!-- Gelen siparişler + kanal kârlılığı -->
+            <Grid Margin="0,0,0,18">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Gelen siparişler -->
+                <Border Grid.Column="0" Style="{StaticResource Card}" Margin="0,0,9,0" Padding="0">
+                    <StackPanel>
+                        <TextBlock Text="Gelen Siparişler" Style="{StaticResource H2}" Margin="18,16,0,0"/>
+                        <DataGrid x:Name="OrdersGrid" Style="{StaticResource DataGridStyle}" Margin="0,8,0,0"
+                                  ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+                                  CellStyle="{StaticResource CellStyle}" RowStyle="{StaticResource RowStyle}"
+                                  ItemsSource="{Binding Orders}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="SİPARİŞ" Binding="{Binding OrderNo}" Width="110"/>
+                                <DataGridTextColumn Header="KANAL" Binding="{Binding Channel}" Width="110"/>
+                                <DataGridTextColumn Header="MÜŞTERİ" Binding="{Binding Customer}" Width="*"/>
+                                <DataGridTextColumn Header="TUTAR" Binding="{Binding Amount}" Width="90"/>
+                                <DataGridTextColumn Header="KOMİSYON" Binding="{Binding Commission}" Width="100"/>
+                                <DataGridTextColumn Header="KARGO" Binding="{Binding Cargo}" Width="80"/>
+                                <DataGridTextColumn Header="NET" Binding="{Binding Net}" Width="100"
+                                                    FontWeight="SemiBold"/>
+                                <DataGridTemplateColumn Header="DURUM" Width="130" CellTemplate="{StaticResource StatusBadgeTemplate}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Kanal kârlılığı -->
+                <Border Grid.Column="1" Style="{StaticResource Card}" Margin="9,0,0,0" Padding="0">
+                    <StackPanel>
+                        <TextBlock Text="Kanal Kârlılığı" Style="{StaticResource H2}" Margin="18,16,0,0"/>
+                        <TextBlock Text="Komisyon ve kargo sonrası" Style="{StaticResource Muted}" Margin="18,2,0,0"/>
+                        <DataGrid x:Name="ChannelsGrid" Style="{StaticResource DataGridStyle}" Margin="0,10,0,0"
+                                  RowHeight="52"
+                                  ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+                                  CellStyle="{StaticResource CellStyle}" RowStyle="{StaticResource RowStyle}"
+                                  ItemsSource="{Binding Channels}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="KANAL" Binding="{Binding Channel}" Width="*"/>
+                                <DataGridTextColumn Header="KOM." Binding="{Binding Commission}" Width="55"/>
+                                <DataGridTextColumn Header="AYLIK NET" Binding="{Binding MonthlyNet}" Width="110" FontWeight="SemiBold"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Kritik stok -->
+            <Border Style="{StaticResource Card}" Padding="0">
+                <StackPanel>
+                    <Grid Margin="18,16,18,0">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Width="18" Height="18" Stretch="Uniform" Fill="{DynamicResource Warning}"
+                                  Data="{StaticResource Icon.Warning}" VerticalAlignment="Center"/>
+                            <TextBlock Text="Kritik Stok — Satışı Etkileyebilir" Style="{StaticResource H2}" Margin="9,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <TextBlock Text="Pazaryeri ilanlarında stok tükenmesini önlemek için ikmal edin"
+                                   Style="{StaticResource Muted}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    </Grid>
+                    <DataGrid x:Name="CriticalGrid" Style="{StaticResource DataGridStyle}" Margin="0,10,0,0"
+                              ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+                              CellStyle="{StaticResource CellStyle}" RowStyle="{StaticResource RowStyle}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="KOD" Binding="{Binding Code}" Width="110"/>
+                            <DataGridTextColumn Header="ÜRÜN" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="KATEGORİ" Binding="{Binding Category}" Width="140"/>
+                            <DataGridTextColumn Header="STOK" Binding="{Binding Stock}" Width="90"/>
+                            <DataGridTemplateColumn Header="DURUM" Width="130" CellTemplate="{StaticResource StatusBadgeTemplate}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

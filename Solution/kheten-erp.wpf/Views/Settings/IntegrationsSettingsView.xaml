@@ -6,7 +6,7 @@
         <StackPanel MaxWidth="900" HorizontalAlignment="Left">
 
             <TextBlock Text="E-Ticaret Entegrasyonları" Style="{StaticResource H1}"/>
-            <TextBlock Text="Pazaryeri ve mağaza API anahtarlarını buradan yönetin. Anahtarlar varsayılan olarak gizlidir; göz simgesiyle görüntüleyebilirsiniz."
+            <TextBlock Text="Pazaryeri ve mağaza API anahtarlarını yönetin. Komisyon ve kargo değerleri kanal bazlı net kâr hesabında kullanılır."
                        Style="{StaticResource Muted}" Margin="0,3,0,0" TextWrapping="Wrap"/>
 
             <!-- Güvenlik bilgisi -->
@@ -15,100 +15,160 @@
                     <Path Width="18" Height="18" Stretch="Uniform" Fill="{DynamicResource Info}"
                           Data="{StaticResource Icon.Warning}" VerticalAlignment="Top"/>
                     <TextBlock Margin="11,0,0,0" TextWrapping="Wrap" Foreground="{DynamicResource Info}" FontSize="12.5"
-                               Text="API anahtarları hassas bilgidir. Backend bağlandığında bu değerler şifrelenerek saklanacaktır — kaynak koda veya paylaşılan dosyalara yazılmamalıdır."/>
+                               Text="API anahtarları hassas bilgidir. Backend bağlandığında şifrelenerek saklanacaktır — kaynak koda veya paylaşılan dosyalara yazılmamalıdır."/>
                 </StackPanel>
             </Border>
 
             <!-- ===== TRENDYOL ===== -->
             <ctl:IntegrationCard StoreName="Trendyol" Initial="T" IsConnected="True">
                 <ctl:IntegrationCard.BrandColor><SolidColorBrush Color="#F27A1A"/></ctl:IntegrationCard.BrandColor>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/><RowDefinition Height="14"/><RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <ctl:SecretField Grid.Row="0" Grid.Column="0" Label="Satıcı (Supplier) ID" Masked="False" Value="784512"/>
-                    <ctl:SecretField Grid.Row="0" Grid.Column="2" Label="API Key" Value="trendyol-api-key-demo"/>
-                    <ctl:SecretField Grid.Row="2" Grid.Column="0" Label="API Secret" Value="trendyol-secret-demo-9f2a"/>
-                    <ctl:SecretField Grid.Row="2" Grid.Column="2" Label="Entegrasyon Ref. Kodu" Masked="False" Value="ERP-TR-01"/>
-                </Grid>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/><RowDefinition Height="14"/><RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ctl:SecretField Grid.Row="0" Grid.Column="0" Label="Satıcı (Supplier) ID" Masked="False" Value="784512"/>
+                        <ctl:SecretField Grid.Row="0" Grid.Column="2" Label="API Key" Value="trendyol-api-key-demo"/>
+                        <ctl:SecretField Grid.Row="2" Grid.Column="0" Label="API Secret" Value="trendyol-secret-demo-9f2a"/>
+                        <ctl:SecretField Grid.Row="2" Grid.Column="2" Label="Entegrasyon Ref. Kodu" Masked="False" Value="ERP-TR-01"/>
+                    </Grid>
+                    <TextBlock Text="KÂRLILIK" Style="{StaticResource Caption}" Margin="0,16,0,8"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ctl:SecretField Grid.Column="0" Label="Komisyon Oranı (%)" Masked="False" Value="18"/>
+                        <ctl:SecretField Grid.Column="2" Label="Kargo Ücreti (₺)" Masked="False" Value="44,90"/>
+                    </Grid>
+                </StackPanel>
             </ctl:IntegrationCard>
 
             <!-- ===== HEPSİBURADA ===== -->
             <ctl:IntegrationCard StoreName="Hepsiburada" Initial="H" IsConnected="True">
                 <ctl:IntegrationCard.BrandColor><SolidColorBrush Color="#FF6000"/></ctl:IntegrationCard.BrandColor>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/><RowDefinition Height="14"/><RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <ctl:SecretField Grid.Row="0" Grid.Column="0" Label="Merchant ID" Masked="False" Value="hb-merchant-3310"/>
-                    <ctl:SecretField Grid.Row="0" Grid.Column="2" Label="Kullanıcı Adı" Masked="False" Value="kheten_api"/>
-                    <ctl:SecretField Grid.Row="2" Grid.Column="0" Label="API Key" Value="hb-api-key-demo"/>
-                    <ctl:SecretField Grid.Row="2" Grid.Column="2" Label="API Secret" Value="hb-secret-demo-44c1"/>
-                </Grid>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/><RowDefinition Height="14"/><RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ctl:SecretField Grid.Row="0" Grid.Column="0" Label="Merchant ID" Masked="False" Value="hb-merchant-3310"/>
+                        <ctl:SecretField Grid.Row="0" Grid.Column="2" Label="Kullanıcı Adı" Masked="False" Value="kheten_api"/>
+                        <ctl:SecretField Grid.Row="2" Grid.Column="0" Label="API Key" Value="hb-api-key-demo"/>
+                        <ctl:SecretField Grid.Row="2" Grid.Column="2" Label="API Secret" Value="hb-secret-demo-44c1"/>
+                    </Grid>
+                    <TextBlock Text="KÂRLILIK" Style="{StaticResource Caption}" Margin="0,16,0,8"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ctl:SecretField Grid.Column="0" Label="Komisyon Oranı (%)" Masked="False" Value="17"/>
+                        <ctl:SecretField Grid.Column="2" Label="Kargo Ücreti (₺)" Masked="False" Value="44,90"/>
+                    </Grid>
+                </StackPanel>
             </ctl:IntegrationCard>
 
             <!-- ===== N11 ===== -->
             <ctl:IntegrationCard StoreName="N11" Initial="N" IsConnected="False">
                 <ctl:IntegrationCard.BrandColor><SolidColorBrush Color="#EA4E1B"/></ctl:IntegrationCard.BrandColor>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <ctl:SecretField Grid.Column="0" Label="App Key" Value=""/>
-                    <ctl:SecretField Grid.Column="2" Label="App Secret" Value=""/>
-                </Grid>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ctl:SecretField Grid.Column="0" Label="App Key" Value=""/>
+                        <ctl:SecretField Grid.Column="2" Label="App Secret" Value=""/>
+                    </Grid>
+                    <TextBlock Text="KÂRLILIK" Style="{StaticResource Caption}" Margin="0,16,0,8"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ctl:SecretField Grid.Column="0" Label="Komisyon Oranı (%)" Masked="False" Value="18"/>
+                        <ctl:SecretField Grid.Column="2" Label="Kargo Ücreti (₺)" Masked="False" Value="44,90"/>
+                    </Grid>
+                </StackPanel>
             </ctl:IntegrationCard>
 
             <!-- ===== AMAZON ===== -->
             <ctl:IntegrationCard StoreName="Amazon" Initial="A" IsConnected="False">
                 <ctl:IntegrationCard.BrandColor><SolidColorBrush Color="#FF9900"/></ctl:IntegrationCard.BrandColor>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/><RowDefinition Height="14"/><RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <ctl:SecretField Grid.Row="0" Grid.Column="0" Label="Satıcı (Seller) ID" Masked="False" Value=""/>
-                    <ctl:SecretField Grid.Row="0" Grid.Column="2" Label="Marketplace ID" Masked="False" Value="A33AVAJ2PDY3EV"/>
-                    <ctl:SecretField Grid.Row="2" Grid.Column="0" Label="SP-API Erişim Anahtarı" Value=""/>
-                    <ctl:SecretField Grid.Row="2" Grid.Column="2" Label="Gizli Anahtar (Secret)" Value=""/>
-                </Grid>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/><RowDefinition Height="14"/><RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ctl:SecretField Grid.Row="0" Grid.Column="0" Label="Satıcı (Seller) ID" Masked="False" Value=""/>
+                        <ctl:SecretField Grid.Row="0" Grid.Column="2" Label="Marketplace ID" Masked="False" Value="A33AVAJ2PDY3EV"/>
+                        <ctl:SecretField Grid.Row="2" Grid.Column="0" Label="SP-API Erişim Anahtarı" Value=""/>
+                        <ctl:SecretField Grid.Row="2" Grid.Column="2" Label="Gizli Anahtar (Secret)" Value=""/>
+                    </Grid>
+                    <TextBlock Text="KÂRLILIK" Style="{StaticResource Caption}" Margin="0,16,0,8"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ctl:SecretField Grid.Column="0" Label="Komisyon Oranı (%)" Masked="False" Value="15"/>
+                        <ctl:SecretField Grid.Column="2" Label="Kargo Ücreti (₺)" Masked="False" Value="0"/>
+                    </Grid>
+                </StackPanel>
             </ctl:IntegrationCard>
 
             <!-- ===== SHOPIFY (kendi mağaza) ===== -->
             <ctl:IntegrationCard StoreName="Shopify Mağaza" Initial="S" IsConnected="False">
                 <ctl:IntegrationCard.BrandColor><SolidColorBrush Color="#95BF47"/></ctl:IntegrationCard.BrandColor>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <ctl:SecretField Grid.Column="0" Label="Mağaza URL" Masked="False" Value="magazam.myshopify.com"/>
-                    <ctl:SecretField Grid.Column="2" Label="Admin API Access Token" Value=""/>
-                </Grid>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ctl:SecretField Grid.Column="0" Label="Mağaza URL" Masked="False" Value="magazam.myshopify.com"/>
+                        <ctl:SecretField Grid.Column="2" Label="Admin API Access Token" Value=""/>
+                    </Grid>
+                    <TextBlock Text="KÂRLILIK" Style="{StaticResource Caption}" Margin="0,16,0,8"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ctl:SecretField Grid.Column="0" Label="Komisyon Oranı (%)" Masked="False" Value="0"/>
+                        <ctl:SecretField Grid.Column="2" Label="Kargo Ücreti (₺)" Masked="False" Value="59,90"/>
+                    </Grid>
+                </StackPanel>
             </ctl:IntegrationCard>
 
             <!-- ===== WOOCOMMERCE (kendi mağaza) ===== -->
             <ctl:IntegrationCard StoreName="WooCommerce Mağaza" Initial="W" IsConnected="False">
                 <ctl:IntegrationCard.BrandColor><SolidColorBrush Color="#7F54B3"/></ctl:IntegrationCard.BrandColor>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/><RowDefinition Height="14"/><RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <ctl:SecretField Grid.Row="0" Grid.Column="0" Label="Site URL" Masked="False" Value="https://magazam.com"/>
-                    <ctl:SecretField Grid.Row="0" Grid.Column="2" Label="Sürüm" Masked="False" Value="wc/v3"/>
-                    <ctl:SecretField Grid.Row="2" Grid.Column="0" Label="Consumer Key" Value=""/>
-                    <ctl:SecretField Grid.Row="2" Grid.Column="2" Label="Consumer Secret" Value=""/>
-                </Grid>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/><RowDefinition Height="14"/><RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ctl:SecretField Grid.Row="0" Grid.Column="0" Label="Site URL" Masked="False" Value="https://magazam.com"/>
+                        <ctl:SecretField Grid.Row="0" Grid.Column="2" Label="Sürüm" Masked="False" Value="wc/v3"/>
+                        <ctl:SecretField Grid.Row="2" Grid.Column="0" Label="Consumer Key" Value=""/>
+                        <ctl:SecretField Grid.Row="2" Grid.Column="2" Label="Consumer Secret" Value=""/>
+                    </Grid>
+                    <TextBlock Text="KÂRLILIK" Style="{StaticResource Caption}" Margin="0,16,0,8"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ctl:SecretField Grid.Column="0" Label="Komisyon Oranı (%)" Masked="False" Value="0"/>
+                        <ctl:SecretField Grid.Column="2" Label="Kargo Ücreti (₺)" Masked="False" Value="0"/>
+                    </Grid>
+                </StackPanel>
             </ctl:IntegrationCard>
 
         </StackPanel>
