@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="kheten-erp.Application/kheten-erp.Application.csproj" />
+  <Project Path="kheten-erp.Domain/kheten-erp.Domain.csproj" />
+  <Project Path="kheten-erp.Infrastructure/kheten-erp.Infrastructure.csproj" />
+  <Project Path="kheten-erp.wpf/kheten-erp.wpf.csproj" />
+</Solution>

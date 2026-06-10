@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ===== KOYU TEMA (DARK) =====
+         LightTheme.xaml ile birebir aynı anahtarlar. -->
+
+    <!-- Zemin / yüzeyler -->
+    <SolidColorBrush x:Key="AppBg"          Color="#0B1120"/>
+    <SolidColorBrush x:Key="Surface"        Color="#111C2E"/>
+    <SolidColorBrush x:Key="SurfaceAlt"     Color="#1B2942"/>
+    <SolidColorBrush x:Key="Topbar"         Color="#111C2E"/>
+
+    <!-- Sol menü -->
+    <SolidColorBrush x:Key="Sidebar"        Color="#0E1726"/>
+    <SolidColorBrush x:Key="SidebarBorder"  Color="#1E293B"/>
+    <SolidColorBrush x:Key="NavText"        Color="#94A3B8"/>
+    <SolidColorBrush x:Key="NavTextActive"  Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="NavActiveBg"    Color="#1D4ED8"/>
+    <SolidColorBrush x:Key="NavHoverBg"     Color="#172339"/>
+
+    <!-- Vurgu / birincil -->
+    <SolidColorBrush x:Key="Primary"        Color="#3B82F6"/>
+    <SolidColorBrush x:Key="PrimaryHover"   Color="#60A5FA"/>
+    <SolidColorBrush x:Key="OnPrimary"      Color="#FFFFFF"/>
+
+    <!-- Metin -->
+    <SolidColorBrush x:Key="Fg"             Color="#F1F5F9"/>
+    <SolidColorBrush x:Key="FgMuted"        Color="#94A3B8"/>
+
+    <!-- Kenarlık -->
+    <SolidColorBrush x:Key="Border"         Color="#283549"/>
+
+    <!-- Durum renkleri -->
+    <SolidColorBrush x:Key="Success"        Color="#4ADE80"/>
+    <SolidColorBrush x:Key="SuccessBg"      Color="#14331F"/>
+    <SolidColorBrush x:Key="Warning"        Color="#FBBF24"/>
+    <SolidColorBrush x:Key="WarningBg"      Color="#3A2A0A"/>
+    <SolidColorBrush x:Key="Danger"         Color="#F87171"/>
+    <SolidColorBrush x:Key="DangerBg"       Color="#3A1414"/>
+    <SolidColorBrush x:Key="Info"           Color="#38BDF8"/>
+    <SolidColorBrush x:Key="InfoBg"         Color="#0C2A3A"/>
+
+    <!-- Grafik serileri -->
+    <SolidColorBrush x:Key="Chart1"         Color="#3B82F6"/>
+    <SolidColorBrush x:Key="Chart2"         Color="#38BDF8"/>
+    <SolidColorBrush x:Key="ChartTrack"     Color="#1E293B"/>
+
+</ResourceDictionary>

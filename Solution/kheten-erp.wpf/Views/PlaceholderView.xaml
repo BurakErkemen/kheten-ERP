@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="kheten_erp.wpf.Views.PlaceholderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="{DynamicResource AppBg}">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border Width="64" Height="64" CornerRadius="16" Background="{DynamicResource SurfaceAlt}"
+                HorizontalAlignment="Center">
+            <Path Width="30" Height="30" Stretch="Uniform" Fill="{DynamicResource FgMuted}"
+                  Data="{StaticResource Icon.Settings}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+        <TextBlock x:Name="TitleText" Text="Bölüm" Style="{StaticResource H1}"
+                   HorizontalAlignment="Center" Margin="0,18,0,4"/>
+        <TextBlock Text="Bu modül MVP kapsamının sonraki adımında tasarlanacak."
+                   Style="{StaticResource Muted}" HorizontalAlignment="Center"/>
+    </StackPanel>
+</UserControl>

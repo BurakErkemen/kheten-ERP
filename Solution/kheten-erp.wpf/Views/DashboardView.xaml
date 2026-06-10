@@ -1,0 +1,233 @@
+﻿<UserControl x:Class="kheten_erp.wpf.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="{DynamicResource AppBg}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="28,24">
+        <StackPanel>
+
+            <!-- Başlık -->
+            <Grid Margin="0,0,0,22">
+                <StackPanel>
+                    <TextBlock Text="Genel Bakış" Style="{StaticResource H1}"/>
+                    <TextBlock Text="Hoş geldin Burak — işte bugünkü işletme özetin." Style="{StaticResource Muted}" Margin="0,3,0,0"/>
+                </StackPanel>
+                <Button Style="{StaticResource SecondaryButton}" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="14" Height="14" Stretch="Uniform" Fill="{DynamicResource Fg}"
+                              Data="{StaticResource Icon.Filter}" VerticalAlignment="Center"/>
+                        <TextBlock Text="Bu Ay" Margin="7,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <!-- KPI kartları -->
+            <UniformGrid Columns="4" Margin="0,0,0,18">
+                <!-- Kart 1 -->
+                <Border Style="{StaticResource Card}" Margin="0,0,9,0">
+                    <StackPanel>
+                        <Grid>
+                            <Border Width="40" Height="40" CornerRadius="10" HorizontalAlignment="Left"
+                                    Background="{DynamicResource InfoBg}">
+                                <Path Width="20" Height="20" Stretch="Uniform" Fill="{DynamicResource Info}"
+                                      Data="{StaticResource Icon.Money}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Border Style="{StaticResource Badge}" Background="{DynamicResource SuccessBg}"
+                                    HorizontalAlignment="Right" VerticalAlignment="Top">
+                                <TextBlock Text="▲ %12.5" Style="{StaticResource BadgeText}" Foreground="{DynamicResource Success}"/>
+                            </Border>
+                        </Grid>
+                        <TextBlock Text="Bu Ayki Ciro" Style="{StaticResource Muted}" Margin="0,14,0,2"/>
+                        <TextBlock Text="₺ 842.560" Style="{StaticResource MetricValue}"/>
+                    </StackPanel>
+                </Border>
+                <!-- Kart 2 -->
+                <Border Style="{StaticResource Card}" Margin="9,0,9,0">
+                    <StackPanel>
+                        <Grid>
+                            <Border Width="40" Height="40" CornerRadius="10" HorizontalAlignment="Left"
+                                    Background="{DynamicResource InfoBg}">
+                                <Path Width="20" Height="20" Stretch="Uniform" Fill="{DynamicResource Info}"
+                                      Data="{StaticResource Icon.Sales}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Border Style="{StaticResource Badge}" Background="{DynamicResource SuccessBg}"
+                                    HorizontalAlignment="Right" VerticalAlignment="Top">
+                                <TextBlock Text="▲ %4.1" Style="{StaticResource BadgeText}" Foreground="{DynamicResource Success}"/>
+                            </Border>
+                        </Grid>
+                        <TextBlock Text="Açık Siparişler" Style="{StaticResource Muted}" Margin="0,14,0,2"/>
+                        <TextBlock Text="38" Style="{StaticResource MetricValue}"/>
+                    </StackPanel>
+                </Border>
+                <!-- Kart 3 -->
+                <Border Style="{StaticResource Card}" Margin="9,0,9,0">
+                    <StackPanel>
+                        <Grid>
+                            <Border Width="40" Height="40" CornerRadius="10" HorizontalAlignment="Left"
+                                    Background="{DynamicResource WarningBg}">
+                                <Path Width="20" Height="20" Stretch="Uniform" Fill="{DynamicResource Warning}"
+                                      Data="{StaticResource Icon.Warning}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Border Style="{StaticResource Badge}" Background="{DynamicResource DangerBg}"
+                                    HorizontalAlignment="Right" VerticalAlignment="Top">
+                                <TextBlock Text="Dikkat" Style="{StaticResource BadgeText}" Foreground="{DynamicResource Danger}"/>
+                            </Border>
+                        </Grid>
+                        <TextBlock Text="Kritik Stok Kalemi" Style="{StaticResource Muted}" Margin="0,14,0,2"/>
+                        <TextBlock Text="7" Style="{StaticResource MetricValue}"/>
+                    </StackPanel>
+                </Border>
+                <!-- Kart 4 -->
+                <Border Style="{StaticResource Card}" Margin="9,0,0,0">
+                    <StackPanel>
+                        <Grid>
+                            <Border Width="40" Height="40" CornerRadius="10" HorizontalAlignment="Left"
+                                    Background="{DynamicResource InfoBg}">
+                                <Path Width="20" Height="20" Stretch="Uniform" Fill="{DynamicResource Info}"
+                                      Data="{StaticResource Icon.Receipt}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Border Style="{StaticResource Badge}" Background="{DynamicResource DangerBg}"
+                                    HorizontalAlignment="Right" VerticalAlignment="Top">
+                                <TextBlock Text="▼ %2.3" Style="{StaticResource BadgeText}" Foreground="{DynamicResource Danger}"/>
+                            </Border>
+                        </Grid>
+                        <TextBlock Text="Tahsil Edilecek" Style="{StaticResource Muted}" Margin="0,14,0,2"/>
+                        <TextBlock Text="₺ 124.300" Style="{StaticResource MetricValue}"/>
+                    </StackPanel>
+                </Border>
+            </UniformGrid>
+
+            <!-- Grafik + Aktiviteler -->
+            <Grid Margin="0,0,0,18">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Ciro grafiği -->
+                <Border Grid.Column="0" Style="{StaticResource Card}" Margin="0,0,9,0">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,8">
+                            <StackPanel>
+                                <TextBlock Text="Aylık Ciro Trendi" Style="{StaticResource H2}"/>
+                                <TextBlock Text="Son 8 ay (bin ₺)" Style="{StaticResource Muted}" Margin="0,2,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                <Ellipse Width="9" Height="9" Fill="{DynamicResource Chart1}" VerticalAlignment="Center"/>
+                                <TextBlock Text="Ciro" Style="{StaticResource Muted}" Margin="6,0,0,0" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Basit kolon grafiği -->
+                        <Grid Height="220" Margin="0,12,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <UniformGrid Grid.Row="0" Columns="8" VerticalAlignment="Bottom">
+                                <Grid Margin="9,0"><Rectangle Height="110" VerticalAlignment="Bottom" RadiusX="5" RadiusY="5" Fill="{DynamicResource ChartTrack}"/></Grid>
+                                <Grid Margin="9,0"><Rectangle Height="135" VerticalAlignment="Bottom" RadiusX="5" RadiusY="5" Fill="{DynamicResource ChartTrack}"/></Grid>
+                                <Grid Margin="9,0"><Rectangle Height="98"  VerticalAlignment="Bottom" RadiusX="5" RadiusY="5" Fill="{DynamicResource ChartTrack}"/></Grid>
+                                <Grid Margin="9,0"><Rectangle Height="150" VerticalAlignment="Bottom" RadiusX="5" RadiusY="5" Fill="{DynamicResource ChartTrack}"/></Grid>
+                                <Grid Margin="9,0"><Rectangle Height="125" VerticalAlignment="Bottom" RadiusX="5" RadiusY="5" Fill="{DynamicResource ChartTrack}"/></Grid>
+                                <Grid Margin="9,0"><Rectangle Height="170" VerticalAlignment="Bottom" RadiusX="5" RadiusY="5" Fill="{DynamicResource ChartTrack}"/></Grid>
+                                <Grid Margin="9,0"><Rectangle Height="160" VerticalAlignment="Bottom" RadiusX="5" RadiusY="5" Fill="{DynamicResource ChartTrack}"/></Grid>
+                                <Grid Margin="9,0"><Rectangle Height="200" VerticalAlignment="Bottom" RadiusX="5" RadiusY="5" Fill="{DynamicResource Chart1}"/></Grid>
+                            </UniformGrid>
+
+                            <UniformGrid Grid.Row="1" Columns="8" Margin="0,8,0,0">
+                                <TextBlock Text="Kas" Style="{StaticResource Caption}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Ara" Style="{StaticResource Caption}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Oca" Style="{StaticResource Caption}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Şub" Style="{StaticResource Caption}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Mar" Style="{StaticResource Caption}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Nis" Style="{StaticResource Caption}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="May" Style="{StaticResource Caption}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Haz" Style="{StaticResource Caption}" HorizontalAlignment="Center"/>
+                            </UniformGrid>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Son aktiviteler -->
+                <Border Grid.Column="1" Style="{StaticResource Card}" Margin="9,0,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Son Aktiviteler" Style="{StaticResource H2}" Margin="0,0,0,14"/>
+
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                                <Border Width="9" Height="9" CornerRadius="5" Background="{DynamicResource Success}" VerticalAlignment="Top" Margin="0,5,0,0"/>
+                                <StackPanel Margin="12,0,0,0">
+                                    <TextBlock Text="SF-2026-0418 faturası kesildi" FontWeight="SemiBold" Foreground="{DynamicResource Fg}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="Mavi Tekstil A.Ş. • ₺ 18.400 • 12 dk önce" Style="{StaticResource Muted}" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                                <Border Width="9" Height="9" CornerRadius="5" Background="{DynamicResource Info}" VerticalAlignment="Top" Margin="0,5,0,0"/>
+                                <StackPanel Margin="12,0,0,0">
+                                    <TextBlock Text="Yeni sipariş alındı" FontWeight="SemiBold" Foreground="{DynamicResource Fg}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="Demir İnşaat • 14 kalem • 48 dk önce" Style="{StaticResource Muted}" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                                <Border Width="9" Height="9" CornerRadius="5" Background="{DynamicResource Warning}" VerticalAlignment="Top" Margin="0,5,0,0"/>
+                                <StackPanel Margin="12,0,0,0">
+                                    <TextBlock Text="Stok kritik seviyeye düştü" FontWeight="SemiBold" Foreground="{DynamicResource Fg}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="Vida M6x40 • 18 adet kaldı • 2 sa önce" Style="{StaticResource Muted}" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="9" Height="9" CornerRadius="5" Background="{DynamicResource Primary}" VerticalAlignment="Top" Margin="0,5,0,0"/>
+                                <StackPanel Margin="12,0,0,0">
+                                    <TextBlock Text="Tedarikçi ödemesi yapıldı" FontWeight="SemiBold" Foreground="{DynamicResource Fg}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="Anadolu Metal • ₺ 32.000 • 5 sa önce" Style="{StaticResource Muted}" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Alt: Kritik stok + En çok satanlar -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Style="{StaticResource Card}" Margin="0,0,9,0">
+                    <StackPanel>
+                        <TextBlock Text="Kritik Stok Uyarıları" Style="{StaticResource H2}" Margin="0,0,0,4"/>
+                        <DataGrid Style="{StaticResource DataGridStyle}"
+                                  ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+                                  CellStyle="{StaticResource CellStyle}" RowStyle="{StaticResource RowStyle}"
+                                  ItemsSource="{Binding LowStock}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ÜRÜN" Binding="{Binding Name}" Width="*"/>
+                                <DataGridTextColumn Header="KALAN" Binding="{Binding Stock}" Width="80"/>
+                                <DataGridTextColumn Header="MİN" Binding="{Binding Min}" Width="70"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" Style="{StaticResource Card}" Margin="9,0,0,0">
+                    <StackPanel>
+                        <TextBlock Text="En Çok Satan Ürünler" Style="{StaticResource H2}" Margin="0,0,0,4"/>
+                        <DataGrid Style="{StaticResource DataGridStyle}"
+                                  ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+                                  CellStyle="{StaticResource CellStyle}" RowStyle="{StaticResource RowStyle}"
+                                  ItemsSource="{Binding TopProducts}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ÜRÜN" Binding="{Binding Name}" Width="*"/>
+                                <DataGridTextColumn Header="ADET" Binding="{Binding Qty}" Width="80"/>
+                                <DataGridTextColumn Header="CİRO" Binding="{Binding Revenue}" Width="110"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

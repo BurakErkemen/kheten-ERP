@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="kheten_erp.wpf.Controls.IntegrationCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root">
+    <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+        <StackPanel>
+
+            <!-- Başlık satırı -->
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <Border Width="44" Height="44" CornerRadius="11"
+                            Background="{Binding BrandColor, ElementName=Root}">
+                        <TextBlock Text="{Binding Initial, ElementName=Root}" Foreground="White"
+                                   FontSize="20" FontWeight="Bold"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Margin="13,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding StoreName, ElementName=Root}" Style="{StaticResource H2}"/>
+                        <!-- Durum rozeti: bağlı/pasif -->
+                        <Border CornerRadius="20" Padding="9,2" HorizontalAlignment="Left" Margin="0,5,0,0">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="{DynamicResource SurfaceAlt}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsConnected, ElementName=Root}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource SuccessBg}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock FontSize="11" FontWeight="SemiBold">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Text" Value="Bağlı değil"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource FgMuted}"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsConnected, ElementName=Root}" Value="True">
+                                                <Setter Property="Text" Value="● Bağlı"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource Success}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Etkinleştirme anahtarı -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock Text="Etkin" Style="{StaticResource Muted}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <CheckBox Style="{StaticResource ToggleSwitch}"
+                              IsChecked="{Binding IsConnected, ElementName=Root, Mode=TwoWay}"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Ayraç -->
+            <Border Height="1" Background="{DynamicResource Border}" Margin="0,16,0,16"/>
+
+            <!-- Kimlik / anahtar alanları (tüketiciden gelir) -->
+            <ContentPresenter Content="{Binding Fields, ElementName=Root}"/>
+
+            <!-- Alt butonlar -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,18,0,0">
+                <Button Style="{StaticResource SecondaryButton}" Click="Test_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="14" Height="14" Stretch="Uniform" Fill="{DynamicResource Fg}"
+                              Data="{StaticResource Icon.Link}" VerticalAlignment="Center"/>
+                        <TextBlock Text="Bağlantıyı Test Et" Margin="7,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource PrimaryButton}" Content="Kaydet" Width="110" Margin="10,0,0,0" Click="Save_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

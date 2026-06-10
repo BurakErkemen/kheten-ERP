@@ -1,0 +1,10 @@
+ {
+    "firebaseConfig": {
+        "apiKey": "AIzaSyDt5E-8VBkMOwF_NYewzeyhalVHVSi6chI",
+        "authDomain": "erp-for-nosql.firebaseapp.com",
+        "projectId": "erp-for-nosql",
+        "storageBucket": "erp-for-nosql.firebasestorage.app",
+        "messagingSenderId": "263560353675",
+        "appId": "1:263560353675:web:43c7f781914c13ab92c18e"
+    }
+}
